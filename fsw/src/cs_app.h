@@ -41,6 +41,7 @@
 #include "cs_perfids.h"
 #include "cs_verify.h"
 #include "cs_version.h"
+#include "cs_table_processing.h"
 
 /**************************************************************************
  **
@@ -63,13 +64,6 @@
  */
 #define CS_CMD_PIPE_NAME     "CS_CMD_PIPE"
 #define CS_CMD_PIPE_NAME_LEN 16
-/**\}*/
-
-/**
- * \name CS Name of Table Size
- * \{
- */
-#define CS_TABLETYPE_NAME_SIZE 10
 /**\}*/
 
 /**
@@ -205,8 +199,6 @@ extern CS_AppData_t CS_AppData;
  */
 void CS_AppMain(void);
 
-#if (CS_PRESERVE_STATES_ON_PROCESSOR_RESET == true)
-
 /**
  * \brief CFS Checksum (CS) Critical Data Store Update
  *
@@ -217,8 +209,6 @@ void CS_AppMain(void);
  *       None
  */
 void CS_UpdateCDS(void);
-
-#endif
 
 /**
  * \brief Initialize the Checksum CFS application
@@ -284,7 +274,6 @@ void CS_HousekeepingCmd(const CS_NoArgsCmd_t *CmdPtr);
  */
 void CS_ProcessCmd(const CFE_SB_Buffer_t *BufPtr);
 
-#if (CS_PRESERVE_STATES_ON_PROCESSOR_RESET == true)
 /**
  * \brief Restore tables states from CDS if enabled
  *
@@ -298,6 +287,5 @@ void CS_ProcessCmd(const CFE_SB_Buffer_t *BufPtr);
  * \retval #CFE_SUCCESS \copybrief CFE_SUCCESS
  */
 CFE_Status_t CS_CreateRestoreStatesFromCDS(void);
-#endif
 
 #endif
